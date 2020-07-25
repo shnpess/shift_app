@@ -1,6 +1,6 @@
 @staffs = []
 @shift = []
-
+@reset_shift = []
 
 def name_registor
     puts "何名登録しますか??"
@@ -18,7 +18,10 @@ def name_registor
     @staff[:holiday_num] = gets.to_i
     puts "#{@staff[:name]}さんの出勤数を入力してください"
     @staff[:workday_num] = gets.to_i
+    @staff[:return_workday] = @staff[:workday_num]
     @staffs << @staff
+
+
     count += 1
     end
 
@@ -74,41 +77,62 @@ end
 # -------------------------------------------------------
 
 def shift_registor
-    3.times do
-    www = []
-    @staffs.each do |s|
-        if s[:max_work] != 0 && s[:workday_num] != 0
-            www << s
-        else
-           s[:max_work] = s[:return_max_work]
+    30.times do
+        www = []
+        @staffs.each do |s|
+            if s[:max_work] != 0 && s[:workday_num] != 0
+                www << s
+            end
+            if s[:max_work] == 0
+                s[:max_work] = s[:return_max_work]
+            end
         end
-    end
-    shift_staff = www.sample(2)
-    @shift << shift_staff
-    shift_staff.each do |s|
-        s[:max_work] -= 1
-        s[:workday_num] -= 1
-    end
+        shift_staff = www.sample(6)
+        rest_staff = @staffs - shift_staff
 
+        rest_staff.each do |r|
+            r[:max_work] = r[:return_max_work]
+        end
 
-end
+        shift_staff.each do |s|
+            s[:max_work] -= 1
+            s[:workday_num] -= 1
+        end
+        @shift << shift_staff
+        p shift_staff
+    end
 end
 
 
 # ------------------------------------------------------------
 
+def reset
+    @shift = []
+    @staffs.each do |s|
+        s[:max_work] = s[:return_max_work]
+        s[:workday_num] = s[:return_workday]
+    end
+end
+
+# ----------------------------------------------------------------
 
 while true do
     p @shift
+    count = 1
     @shift.each do |s|
-        p s
+        s = s.map { |ss| ss[:name]}
+
+        puts  "#{count}日:#{s}"
+        count += 1
     end
+
     puts "何を行いますか？？該当の番号を入力して下さい"
     puts "1：スタッフの登録"
     puts "2：設定の登録"
     puts "3：希望休の登録"
     puts "4：シフトの登録"
-    puts "5：終了"
+    puts "5：シフトのリセット"
+    puts "6：終了"
 
     input_num = gets.to_i
 
@@ -121,6 +145,8 @@ while true do
     elsif input_num == 4
         shift_registor
     elsif input_num == 5
+         reset
+    elsif input_num == 6
         break
     end
 end
