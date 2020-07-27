@@ -1,6 +1,6 @@
 @staffs = []
-@staffs = [{:name=>"店長", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
-            {:name=>"副店長", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
+@staffs = [{:name=>"店長", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>1},
+            {:name=>"副店長", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>1},
             {:name=>"門畑", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
             {:name=>"森山", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
             {:name=>"小松", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
@@ -73,7 +73,7 @@ def leader
         leader_choose = gets.to_i
         @staffs[leader_choose - 1][:leader] = 1
         l_count += 1
-        p @staffs
+
     end
 end
 
@@ -116,7 +116,7 @@ end
 def shift_registor
     count = 1
     30.times do
-        www = []
+        @www = []
         @staffs.each do |s|
             if  count == @store_rest
                 break
@@ -124,20 +124,34 @@ def shift_registor
 
             if s[:max_work] > 0 && s[:workday_num] > 0
                 unless s[:holiday].include?(count)
-                www << s
+                @www << s
                 end
             end
-            # if s[:max_work] == 0
-            #     s[:max_work] = s[:return_max_work]
-            # end
         end
 
         if @all_member == count
             shift_staff = @staffs
-            p shift_staff
         else
-            shift_staff = www.sample(6)
+            shift_staff = @www.sample(@min_human)
         end
+
+        # 責任者をシフトにいれる
+        l_count = 0
+        shift_staff.each do |w|
+            if w[:leader] == 1
+                l_count += 1
+            end
+        end
+        if l_count < @leader_count && count != @store_rest
+            leader_staff = @staffs.select { |x| x[:leader] == 1 && x[:max_work] > 0 && x[:workday_num] > 0}
+            leader_staff.delete_if { |l| l[:holiday].include?(count)}
+            leader_staff = leader_staff.sample(@leader_count)
+            shift_staff = shift_staff - shift_staff.sample(leader_staff.length) - leader_staff
+            shift_staff = shift_staff + leader_staff
+        end
+        # ここまで
+
+
 
         rest_staff = @staffs - shift_staff
 
