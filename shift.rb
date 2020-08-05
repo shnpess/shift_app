@@ -1,13 +1,13 @@
 @staffs = []
-# @staffs = [{:name=>"店長", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>1},
-#             {:name=>"副店長", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>1},
-#             {:name=>"門畑", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
-#             {:name=>"森山", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
-#             {:name=>"小松", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
-#             {:name=>"小谷", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
-#             {:name=>"藤田", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
-#             {:name=>"松下", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
-#             {:name=>"ぷん", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0}]
+@staffs = [{:name=>"店長", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>1},
+            {:name=>"副店長", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>1},
+            {:name=>"門畑", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
+            {:name=>"森山", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
+            {:name=>"小松", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
+            {:name=>"小谷", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
+            {:name=>"藤田", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
+            {:name=>"松下", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0},
+            {:name=>"ぷん", :max_work=>3, :return_max_work=>3,  :workday_num=>21, :return_workday=>21, :holiday=>[],:leader=>0}]
 @shift = []
 @staff = {}
 @staff[:holiday] = []
