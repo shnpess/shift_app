@@ -1,0 +1,6 @@
+bitcoin.rb
+key.rb
+buy.rb
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

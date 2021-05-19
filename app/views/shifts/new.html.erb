@@ -1,0 +1,18 @@
+<%= form_tag("shifts#create") do %>
+  <div>
+    <p>スタッフ名</p>
+    <input name="name">
+  </div>
+  <div>
+    <p>勤務日数</p>
+    <select name="max_work">
+    <option value="1">1日</option>
+    <option value="2">2日</option>
+    <option value="3">3日</option>
+    <option value="4">4日</option>
+  </div>
+  <div>
+    <input type="submit" value="新規登録">
+  </div>
+<% end %>
+

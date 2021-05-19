@@ -225,6 +225,12 @@ while true do
 end
 
 
+before_action :authenticate_user!, except: :index
+before_action :category_action, only: [:index, :edit, :new, :create, :update]
+
+def index
+    @post = Post.find(params[:id])
+end
 
 
 
